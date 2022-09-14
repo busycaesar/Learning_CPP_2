@@ -1,0 +1,1 @@
+explain in the reflection what is the effect of the keyword "constexpr"
