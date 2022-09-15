@@ -86,13 +86,10 @@ int main(int argc, char* argv[])
 				recordedCarsOnAds[i].display(resetCounter);
 				resetCounter = false;
 			}
-			else
-				recordedCarsOnAds[i].display(resetCounter);
+			else recordedCarsOnAds[i].display(resetCounter);
 		}
 	std::cout << "--------------------\n";
 }
-
-
 
 /* input file format: a comma separated set of fields with a consistent format of
 <Order Tag>,<Car Brand>,<Car Model>,<Year>,<Price>,<Discount status>
