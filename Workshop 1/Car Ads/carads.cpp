@@ -1,3 +1,20 @@
+//******************************************************************//
+//                                                                  //
+// NAME       : DEV JIGISHKUMAR SHAH                                // 
+// STUDENT ID : 131623217                                           //
+// MAIL ID    : djshah11@myseneca.ca                                //
+// COURSE     : OOP 345 NFF                                         //
+// SUBMISSION :                                    //
+//                                                                  //
+//******************************************************************// 
+//                                                                  //
+// AUTHENTICITY DECLARATION :                                       //
+// I HAVE DONE ALL THE CODING BY MYSELF AND ONLY COPIED THE CODE    //
+// THAT MY PROFESSOR PROVIDED TO COMPLETE MY WORKSHOPS AND			//
+// ASSIGNMENTS.													    //
+//                                                                  //
+//******************************************************************//
+
 #include"carads.h"
 
 namespace sdds
@@ -6,9 +23,9 @@ namespace sdds
 	void listArgs(int argc, char* argv[])
 	{
 
-		cout << "Command Line" << endl << "--------------------------";
+		std::cout << "Command Line" << std::endl << "--------------------------";
 
-		for (int i = 0; i < argc; i++)cout << i << ": " << argv[i] << endl;
+		for (int i = 0; i < argc; i++)std::cout << i << ": " << argv[i] << std::endl;
 
 	}
 
@@ -24,31 +41,30 @@ namespace sdds
 
 		m_brand[0] = '\0';
 		m_model[0] = '\0';
-		m_carStatus = '\0';
+		m_carStatus = nullptr;
 		m_manuYear = 0000;
 		m_price = 0.0;
 		m_isDiscount = false;
-		m_counter = 0;
 
 	}
 
-	void Cars::read(istream& is)
+	void Cars::read(std::istream& is)
 	{
 
 		if (is)
 		{
 
 			// VARIABLE DECLARATION.
-			char* f_discount='\0';
+			char f_discount = '\0';
 
 			is.getline(m_carStatus, 1, ',');
 			is.getline(m_brand, 9, ',');
 			is.getline(m_model, 14, ',');
 			is >> m_manuYear;
 			is >> m_price;
-			is.getline(f_discount, 1, '\n');
+			is.getline(&f_discount, 1, '\n');
 
-			switch (*f_discount)
+			switch (f_discount)
 			{
 
 			case 'Y':
@@ -66,26 +82,27 @@ namespace sdds
 	void Cars::display(bool reset)
 	{
 
+		static int f_counter = 0;
+
 		if (m_brand[0] = '\0')
 		{
 
-			cout << left << setw(2) << m_counter++ << left << setw(10) << m_brand << " | " << left << setw(15) << m_model << " | " << setw(7) << m_manuYear << " | " << left << setw(7);
-			setprecision(2);
-			cout << m_price + g_taxrate;
+			std::cout << std::left << std::setw(2) << f_counter++ << std::left << std::setw(10) << m_brand << " | " << std::left << std::setw(15) << m_model << " | " << std::setw(7) << m_manuYear << " | " << std::left << std::setw(7);
+			std::cout << std::setprecision(2) << m_price + g_taxrate;
 
-			if (m_isDiscount)cout << right << setw(12) << (m_price + g_taxrate) - g_discount;
+			if (m_isDiscount)std::cout << std::right << std::setw(12) << (m_price + g_taxrate) - g_discount;
 
-			cout << endl;
+			std::cout << std::endl;
 
 		}
 		else
 		{
 
-			cout << m_counter++ << " No Car" << endl;
+			std::cout << f_counter++ << " No Car" << std::endl;
 
 		}
 
-		if (reset)m_counter = 0;
+		if (reset)f_counter = 0;
 
 	}
 

@@ -1,0 +1,8 @@
+﻿  carads.cpp
+  w1_p1.cpp
+  Generating Code...
+carads.obj : error LNK2001: unresolved external symbol "double g_taxrate" (?g_taxrate@@3NA)
+w1_p1.obj : error LNK2001: unresolved external symbol "double g_taxrate" (?g_taxrate@@3NA)
+carads.obj : error LNK2001: unresolved external symbol "double g_discount" (?g_discount@@3NA)
+w1_p1.obj : error LNK2001: unresolved external symbol "double g_discount" (?g_discount@@3NA)
+D:\CPA Sem 3\OOP 345\Workshops\Workshop 1\Car Ads\x64\Debug\Car Ads.exe : fatal error LNK1120: 2 unresolved externals
