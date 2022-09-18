@@ -2,6 +2,8 @@
 // Wail Mardini - 2022/07/04
 // Cornel - 2022/09/08
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -12,6 +14,9 @@
 constexpr int MAX_CARS = 100;
 int cout = 0; // this is intentional
 
+double g_taxrate;
+double g_discount;
+
 //check the format of the input file at the end of this file
 
 int main(int argc, char* argv[])
@@ -19,7 +24,7 @@ int main(int argc, char* argv[])
 
 	// VARIABLE DECLARATION.
 	// will break compilation if best practices about namespaces are ignored
-	
+
 	cout = 1;
 	// This functions lists the command line arguments
 	sdds::listArgs(argc, argv);
@@ -42,36 +47,52 @@ int main(int argc, char* argv[])
 	{
 
 		// Rates change from ad 1 to ad 2
-		if (ad == 1) { // special day! no tax for all cars and 10% discount for applicable cars!
+		if (ad == 1)
+		{ // special day! no tax for all cars and 10% discount for applicable cars!
+
 			g_taxrate = 0;
 			g_discount = 0.10;
+
 		}
-		else {
+		else
+		{
+
 			g_taxrate = 0.13;
 			g_discount = 0.05;
+
 		}
 
 		// each parameter contains the orders from one day, process each one at a time
 		std::ifstream in(argv[ad]);
+
 		if (in.is_open() == false)
 		{
+
 			std::cout << "Cannot open file [" << argv[ad] << "]. Ignoring it!\n";
 			continue; // go to the next iteration of the loop
+
 		}
 
 		// loop through each ad
 		while (!in.eof())
 		{
+
 			// read in the rest of the data as a FoodOrder
 			currentCar.read(in);
 
 			// Count the new cars
-			if (currentCar.getStatus() == 'N') {
+			if (currentCar.getStatus() == 'N')
+			{
+
 				newCars++;
+
 			}
+
 			recordedCarsOnAds[allCars++] = currentCar;
 			currentCar.display(0);
+
 		}
+
 	}
 
 	// print the new cars
@@ -79,16 +100,28 @@ int main(int argc, char* argv[])
 	std::cout << "New Cars\n";
 	std::cout << "--------------------\n";
 	std::cout << "    Brand     | Model     | Year |Price w/Tax |Special Price" << std::endl;
+
 	bool resetCounter = true;
+
 	for (auto i = 0u; i < allCars; ++i)
-		if (recordedCarsOnAds[i].getStatus() == 'N') {
-			if (resetCounter) {
+
+		if (recordedCarsOnAds[i].getStatus() == 'N')
+		{
+
+			if (resetCounter)
+			{
+
 				recordedCarsOnAds[i].display(resetCounter);
 				resetCounter = false;
+
 			}
+
 			else recordedCarsOnAds[i].display(resetCounter);
+
 		}
+
 	std::cout << "--------------------\n";
+
 }
 
 /* input file format: a comma separated set of fields with a consistent format of

@@ -4,7 +4,7 @@
 // STUDENT ID : 131623217                                           //
 // MAIL ID    : djshah11@myseneca.ca                                //
 // COURSE     : OOP 345 NFF                                         //
-// SUBMISSION :                                    //
+// SUBMISSION : WORKSHOP - 1 (PART 1)                               //
 //                                                                  //
 //******************************************************************// 
 //                                                                  //
@@ -29,6 +29,7 @@ extern double g_discount;
 namespace sdds
 {
 
+
 	void listArgs(int argc, char* argv[]);
 
 	// CLASS.
@@ -51,7 +52,7 @@ namespace sdds
 		void setEmpty();
 		void read(std::istream& is);
 		void display(bool reset);
-		char getStatus();
+		char getStatus()const;
 
 	};
 

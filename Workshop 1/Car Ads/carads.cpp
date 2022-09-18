@@ -4,7 +4,7 @@
 // STUDENT ID : 131623217                                           //
 // MAIL ID    : djshah11@myseneca.ca                                //
 // COURSE     : OOP 345 NFF                                         //
-// SUBMISSION :                                    //
+// SUBMISSION : WORKSHOP - 1 (PART 1)                               //
 //                                                                  //
 //******************************************************************// 
 //                                                                  //
@@ -15,6 +15,8 @@
 //                                                                  //
 //******************************************************************//
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include"carads.h"
 
 namespace sdds
@@ -23,9 +25,11 @@ namespace sdds
 	void listArgs(int argc, char* argv[])
 	{
 
-		std::cout << "Command Line" << std::endl << "--------------------------";
+		std::cout << "Command Line:" << std::endl << "--------------------------" << std::endl;
 
 		for (int i = 0; i < argc; i++)std::cout << i << ": " << argv[i] << std::endl;
+
+		std::cout << "--------------------------" << std::endl;
 
 	}
 
@@ -51,13 +55,14 @@ namespace sdds
 	void Cars::read(std::istream& is)
 	{
 
+
 		if (is)
 		{
 
 			// VARIABLE DECLARATION.
 			char f_discount = '\0';
 
-			is.getline(m_carStatus, 1, ',');
+			is.getline(m_carStatus, 1);
 			is.getline(m_brand, 9, ',');
 			is.getline(m_model, 14, ',');
 			is >> m_manuYear;
@@ -106,7 +111,7 @@ namespace sdds
 
 	}
 
-	char Cars::getStatus()
+	char Cars::getStatus()const
 	{
 
 		return *m_carStatus;

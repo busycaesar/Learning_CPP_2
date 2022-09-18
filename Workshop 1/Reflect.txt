@@ -1,1 +1,17 @@
-explain in the reflection what is the effect of the keyword "constexpr"
+Name: Dev Jigishkumar Shah
+Student Id: 131623217
+Mail Id: djshah11@myseneca.ca
+Course: OOP 345 NFF
+Submission: Workshop 1 (Reflect)
+
+Topics Learned: Main function with arguments, external linkage, static variable, string
+
+=> constexpr: This keyword means 'Constant Expression' which means that the expression following this is going to remain constant through out the program. Hence, compiler can evaluate it during compile time instead of run time. This helps in memory allocation.
+
+=> Internal Linkage: Internal Linkage include any variable which will be valid only in the module in which it is declared and can not be accessed from any other module. 'static' is the keyword which can be added before the variable to make it internal linkage.
+
+=> External Linkage: External Linkage include any variable which will be valid through out all the modules of the project and can be accessed from any module. 'extern' is the keyword which can be added before the variable to make it internal linkage. For instance, in carads.h, we declare two global variables, that is g_taxrate and g_discount, which are actually assigned the value in the main function.
+
+=> Static Variables: Static is the keyword which is declared before declaring the variable. The variable which has static keyword before it, remains for the lifetime for the program and does not changes its value. For example, if any variable is declated static in a function and given a value of 1, added +1 after it, its value will becomes 2 even if that function is called again. When the function is called second time, it will not redeclare it again.
+
+=> 
