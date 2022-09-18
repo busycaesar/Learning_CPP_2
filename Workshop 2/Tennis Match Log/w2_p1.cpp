@@ -8,6 +8,8 @@
 #include "TennisLog.h"
 #include "TennisLog.h"
 
+using namespace sdds;
+
 void printDivider(size_t cnt) 
 {
 
