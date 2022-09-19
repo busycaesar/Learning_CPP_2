@@ -4,7 +4,7 @@
 // STUDENT ID : 131623217                                           //
 // MAIL ID    : djshah11@myseneca.ca                                //
 // COURSE     : OOP 345 NFF                                         //
-// SUBMISSION : WORKSHOP - 1 (PART 1)                               //
+// SUBMISSION : WORKSHOP - 1 (PART 2)                               //
 //                                                                  //
 //******************************************************************// 
 //                                                                  //
@@ -22,13 +22,12 @@
 #include<cstring>
 #include<iomanip>
 
-// VARIABLE DECLARATION.
+	// VARIABLE DECLARATION.
 extern double g_taxrate;
 extern double g_discount;
 
 namespace sdds
 {
-
 
 	void listArgs(int argc, char* argv[]);
 
@@ -37,8 +36,8 @@ namespace sdds
 	{
 
 		// DATA MEMBERS.
-		char m_brand[10], m_model[15];
-		char* m_carStatus;
+		char* m_brand;
+		char m_carStatus, m_model[15];
 		int m_manuYear;
 		double m_price;
 		bool m_isDiscount;
@@ -47,14 +46,24 @@ namespace sdds
 
 		// CONSTRUCTOR.
 		Cars();
+		Cars(const Cars& car);
+		~Cars();
 
 		// MEMBER FUNCTION.
 		void setEmpty();
 		void read(std::istream& is);
-		void display(bool reset);
+		void display(bool reset)const;
 		char getStatus()const;
 
+		// OPERATOR.
+		operator bool()const;
+		Cars& operator=(const Cars& car);
+
 	};
+
+	void operator>>(const Cars& LO, Cars& RO);
+
+	std::istream& operator>>(std::istream& in, Cars& car);
 
 }
 

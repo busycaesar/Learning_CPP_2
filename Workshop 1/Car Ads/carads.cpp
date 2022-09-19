@@ -4,7 +4,7 @@
 // STUDENT ID : 131623217                                           //
 // MAIL ID    : djshah11@myseneca.ca                                //
 // COURSE     : OOP 345 NFF                                         //
-// SUBMISSION : WORKSHOP - 1 (PART 1)                               //
+// SUBMISSION : WORKSHOP - 1 (PART 2)                               //
 //                                                                  //
 //******************************************************************// 
 //                                                                  //
@@ -27,9 +27,9 @@ namespace sdds
 
 		std::cout << "Command Line:" << std::endl << "--------------------------" << std::endl;
 
-		for (int i = 0; i < argc; i++)std::cout << i << ": " << argv[i] << std::endl;
+		for (int i = 0; i < argc; i++)std::cout << "  " << i + 1 << ": " << argv[i] << std::endl;
 
-		std::cout << "--------------------------" << std::endl;
+		std::cout << "--------------------------" << std::endl << std::endl;
 
 	}
 
@@ -40,12 +40,27 @@ namespace sdds
 
 	}
 
+	Cars::Cars(const Cars& car)
+	{
+
+		setEmpty();
+		*this = car;
+
+	}
+
+	Cars::~Cars()
+	{
+
+		delete[] m_brand;
+
+	}
+
 	void Cars::setEmpty()
 	{
 
-		m_brand[0] = '\0';
+		m_brand = nullptr;
 		m_model[0] = '\0';
-		m_carStatus = nullptr;
+		m_carStatus = '\0';
 		m_manuYear = 0000;
 		m_price = 0.0;
 		m_isDiscount = false;
@@ -55,47 +70,63 @@ namespace sdds
 	void Cars::read(std::istream& is)
 	{
 
-
 		if (is)
 		{
 
 			// VARIABLE DECLARATION.
 			char f_discount = '\0';
+			char f_temp[30];
 
-			is.getline(m_carStatus, 1);
-			is.getline(m_brand, 9, ',');
-			is.getline(m_model, 14, ',');
+			is >> m_carStatus;
+			is.ignore();
+			is.getline(f_temp, 29, ',');
+			delete[] m_brand;
+			m_brand = new char[strlen(f_temp) + 1];
+			strcpy(m_brand, f_temp);
+			is.getline(m_model, 15, ',');
 			is >> m_manuYear;
+			is.ignore();
 			is >> m_price;
-			is.getline(&f_discount, 1, '\n');
+			is.ignore();
+			is >> f_discount;
+			is.ignore();
 
-			switch (f_discount)
+			if (f_discount == 'Y')
 			{
 
-			case 'Y':
 				m_isDiscount = true;
-				break;
-			case 'N':
+
+			}
+			else
+			{
+
 				m_isDiscount = false;
-				break;
+
 			}
 
 		}
 
 	}
 
-	void Cars::display(bool reset)
+	void Cars::display(bool reset)const
 	{
 
 		static int f_counter = 0;
 
-		if (m_brand[0] = '\0')
+		if (reset)f_counter = 0;
+
+		if (m_brand[0] != '\0')
 		{
 
-			std::cout << std::left << std::setw(2) << f_counter++ << std::left << std::setw(10) << m_brand << " | " << std::left << std::setw(15) << m_model << " | " << std::setw(7) << m_manuYear << " | " << std::left << std::setw(7);
-			std::cout << std::setprecision(2) << m_price + g_taxrate;
+			std::cout << std::setw(2) << std::left << ++f_counter << ". " << std::setw(10) << std::left << m_brand << "| " << std::setw(15) << std::left << m_model << "| " << std::setw(4) << std::right << m_manuYear << " |";
+			std::cout << std::setw(12) << std::fixed << std::setprecision(2) << std::right << m_price * (g_taxrate + 1) << "|";
 
-			if (m_isDiscount)std::cout << std::right << std::setw(12) << (m_price + g_taxrate) - g_discount;
+			if (m_isDiscount)
+			{
+
+				std::cout << std::setw(12) << std::fixed << std::setprecision(2) << std::right << m_price * (1 + g_taxrate) * (1 - g_discount);
+
+			}
 
 			std::cout << std::endl;
 
@@ -103,18 +134,60 @@ namespace sdds
 		else
 		{
 
-			std::cout << f_counter++ << " No Car" << std::endl;
+			std::cout << "No Car" << std::endl;
 
 		}
 
-		if (reset)f_counter = 0;
 
 	}
 
 	char Cars::getStatus()const
 	{
 
-		return *m_carStatus;
+		return m_carStatus;
+
+	}
+
+	Cars::operator bool()const
+	{
+
+		return m_carStatus == 'N';
+
+	}
+
+	Cars& Cars::operator=(const Cars& car)
+	{
+
+		if (this != &car)
+		{
+
+			delete[] m_brand;
+			m_brand = new char[strlen(car.m_brand) + 1];
+			strcpy(m_brand, car.m_brand);
+			strcpy(m_model, car.m_model);
+			m_carStatus = car.m_carStatus;
+			m_manuYear = car.m_manuYear;
+			m_isDiscount = car.m_isDiscount;
+			m_price = car.m_price;
+
+		}
+
+		return *this;
+
+	}
+
+	void operator>>(const Cars& LO, Cars& RO)
+	{
+
+		RO = LO;
+
+	}
+
+	std::istream& operator>>(std::istream& in, Cars& car)
+	{
+
+		car.read(in);
+		return in;
 
 	}
 
