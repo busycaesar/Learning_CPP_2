@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <fstream>
 #include "carads.h"
-#include "carads.h" // This is intentional to test your safe guard in .h file 
+#include "carads.h" // This is intentional to test your safe guard in .h file
 
 // TODO: explain in the reflection what is the effect of the keyword "constexpr"
 constexpr int MAX_CARS = 100;
@@ -20,8 +20,8 @@ double g_discount;
 
 // TODO: write the prototype for the main function
 //         to accept command line arguments
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
+
 	// will break compilation if best practices about namespaces are ignored
 	cout = 1;
 
@@ -40,8 +40,9 @@ int main(int argc, char* argv[])
 	std::cout << "All Cars\n";
 	std::cout << "--------------------\n";
 
-	std::cout << "    Brand     | Model     | Year |Price w/Tax |Special Price" << std::endl;
+	std::cout << "    Brand     | Model          | Year |Price w/Tax |Special Price" << std::endl;
 
+	std::string notes = "";
 	for (auto ad = 1; ad < argc; ++ad)
 	{
 
@@ -59,33 +60,35 @@ int main(int argc, char* argv[])
 		std::ifstream in(argv[ad]);
 		if (in.is_open() == false)
 		{
-			std::cout << "Cannot open file [" << argv[ad] << "]. Ignoring it!\n";
+			notes = notes + "Cannot open file [" + argv[ad] + "]. Ignoring it!\n";
 			continue; // go to the next iteration of the loop
 		}
 
 		// loop through each ad
-		while (!in.eof())
-		{
+		while (!in.eof()) {
+
 			// read in the rest of the data as a FoodOrder
-			currentCar.read(in);
+			in >> currentCar; // overload this operator
 
 			// Count the new cars
-			if (currentCar.getStatus() == 'N') {
+			if (currentCar) {
 				newCars++;
 			}
-			recordedCarsOnAds[allCars++] = currentCar;
+			currentCar >> recordedCarsOnAds[allCars++];  // overload this operator
 			currentCar.display(0);
 		}
+		in.close();
 	}
+	std::cout << "Notes:\n" << notes;
 
 	// print the new cars
 	std::cout << "--------------------\n";
 	std::cout << "New Cars\n";
 	std::cout << "--------------------\n";
-	std::cout << "    Brand     | Model     | Year |Price w/Tax |Special Price" << std::endl;
+	std::cout << "    Brand     | Model          | Year |Price w/Tax |Special Price" << std::endl;
 	bool resetCounter = true;
 	for (auto i = 0u; i < allCars; ++i)
-		if (recordedCarsOnAds[i].getStatus() == 'N') {
+		if (recordedCarsOnAds[i]) {  // overload this operator
 			if (resetCounter) {
 				recordedCarsOnAds[i].display(resetCounter);
 				resetCounter = false;
@@ -111,3 +114,4 @@ U,Honda,CRV,2015,15000,Y
 	Y - Discount applies
 	N - Discount does not apply
 */
+

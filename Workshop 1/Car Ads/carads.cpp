@@ -4,7 +4,7 @@
 // STUDENT ID : 131623217                                           //
 // MAIL ID    : djshah11@myseneca.ca                                //
 // COURSE     : OOP 345 NFF                                         //
-// SUBMISSION : WORKSHOP - 1 (PART 1)                               //
+// SUBMISSION : WORKSHOP - 1 (PART 2)                               //
 //                                                                  //
 //******************************************************************// 
 //                                                                  //
@@ -40,10 +40,25 @@ namespace sdds
 
 	}
 
+	Cars::Cars(const Cars& car)
+	{
+
+		setEmpty();
+		*this = car;
+
+	}
+
+	Cars::~Cars()
+	{
+
+		delete[] m_brand;
+
+	}
+
 	void Cars::setEmpty()
 	{
 
-		m_brand[0] = '\0';
+		m_brand = nullptr;
 		m_model[0] = '\0';
 		m_carStatus = '\0';
 		m_manuYear = 0000;
@@ -60,10 +75,14 @@ namespace sdds
 
 			// VARIABLE DECLARATION.
 			char f_discount = '\0';
+			char f_temp[30];
 
 			is >> m_carStatus;
 			is.ignore();
-			is.getline(m_brand, 10, ',');
+			is.getline(f_temp, 29, ',');
+			delete[] m_brand;
+			m_brand = new char[strlen(f_temp) + 1];
+			strcpy(m_brand, f_temp);
 			is.getline(m_model, 15, ',');
 			is >> m_manuYear;
 			is.ignore();
@@ -126,6 +145,49 @@ namespace sdds
 	{
 
 		return m_carStatus;
+
+	}
+
+	Cars::operator bool()const
+	{
+
+		return m_carStatus == 'N';
+
+	}
+
+	Cars& Cars::operator=(const Cars& car)
+	{
+
+		if (this != &car)
+		{
+
+			delete[] m_brand;
+			m_brand = new char[strlen(car.m_brand) + 1];
+			strcpy(m_brand, car.m_brand);
+			strcpy(m_model, car.m_model);
+			m_carStatus = car.m_carStatus;
+			m_manuYear = car.m_manuYear;
+			m_isDiscount = car.m_isDiscount;
+			m_price = car.m_price;
+
+		}
+
+		return *this;
+
+	}
+
+	void operator>>(const Cars& LO, Cars& RO)
+	{
+
+		RO = LO;
+
+	}
+
+	std::istream& operator>>(std::istream& in, Cars& car)
+	{
+
+		car.read(in);
+		return in;
 
 	}
 
