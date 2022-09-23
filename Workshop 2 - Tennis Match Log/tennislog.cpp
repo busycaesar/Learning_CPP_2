@@ -62,10 +62,17 @@ namespace sdds
 
 		m_matcheCount = countLines(file) - 1;
 		m_matche = new TennisMatch[m_matcheCount];
-		
+
 		std::ifstream f_data(file);
+		std::cin.ignore(1000, '\n');
+
+		for (int i = 0; i < m_matcheCount; i++)
+		{
+
+			std::cin >> m_matche[i].m_tournamentId;
 
 
+		}
 
 	}
 
