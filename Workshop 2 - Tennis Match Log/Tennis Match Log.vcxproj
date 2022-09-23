@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="tennislog.cpp" />
     <ClCompile Include="w2_p1.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tennislog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
