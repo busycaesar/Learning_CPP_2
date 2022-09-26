@@ -15,15 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="w2_p1.cpp">
+    <ClCompile Include="TennisLog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tennislog.cpp">
+    <ClCompile Include="w2_p2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tennislog.h">
+    <ClInclude Include="TennisLog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

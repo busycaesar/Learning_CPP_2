@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2fca1e21-89ce-4d88-ac8f-475519605d1c}</ProjectGuid>
-    <RootNamespace>TennisMatchLog</RootNamespace>
+    <ProjectGuid>{04e1ef12-2975-4d38-a2b8-22589310bc41}</ProjectGuid>
+    <RootNamespace>Workshop2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="tennislog.cpp" />
-    <ClCompile Include="w2_p1.cpp" />
+    <ClCompile Include="TennisLog.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="w2_p2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tennislog.h" />
+    <ClInclude Include="TennisLog.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

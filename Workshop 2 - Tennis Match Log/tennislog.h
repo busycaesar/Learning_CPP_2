@@ -1,3 +1,20 @@
+//******************************************************************//
+//                                                                  //
+// NAME       : DEV JIGISHKUMAR SHAH                                // 
+// STUDENT ID : 131623217                                           //
+// MAIL ID    : djshah11@myseneca.ca                                //
+// COURSE     : OOP 345 NFF                                         //
+// SUBMISSION : WORKSHOP 2 (PART 2)                                 //
+//                                                                  //
+//******************************************************************// 
+//                                                                  //
+// AUTHENTICITY DECLARATION :                                       //
+// I HAVE DONE ALL THE CODING BY MYSELF AND ONLY COPIED THE CODE    //
+// THAT MY PROFESSOR PROVIDED TO COMPLETE MY WORKSHOPS AND			//
+// ASSIGNMENTS.													    //
+//                                                                  //
+//******************************************************************//
+
 #ifndef SDDS_TENNISLOG_H
 #define SDDS_TENNISLOG_H
 
@@ -19,38 +36,49 @@ namespace sdds
 
 		// CONSTRUCTORS AND DESTRUCTOR.
 		TennisMatch();
+		TennisMatch(std::string tourId, std::string tourName, int matchID, std::string tourWinner, std::string tourLoser);
 
 		// MEMBER FUNCTIONS.
 		void setEmpty();
-		bool isEmpty()const;
-		std::ostream& display(std::ostream& os)const;
+
+		friend std::ostream& operator<<(std::ostream& os, const TennisMatch& match);
 
 	};
+
+	// HELPER FUNCTIONS.
+	std::ostream& operator<<(std::ostream& os, const TennisMatch& match);
 
 	class TennisLog
 	{
 
 		// DATA MEMBERS.
 		TennisMatch* m_matche;
-		int m_matcheCount;
+		size_t m_matcheCount;
+
+		// MEMBER FUNCTIONS.
+		size_t countLines(std::string file)const;
+		void setEmptyData();
+
+	public:
 
 		// CONSTRUCTORS AND DESTRUCTORS.
 		TennisLog();
 		TennisLog(std::string file);
+		TennisLog(const TennisLog& source);
+		TennisLog(TennisLog&& source);
+		~TennisLog();
 
 		// MEMBER FUNCTIONS.
-		void addMatch(TennisMatch& source);
-		TennisLog& findMatches(std::string player);
-		TennisMatch operator[](size_t);
-		int countLines(std::string file);
+		void addMatch(const TennisMatch& source);
+		TennisLog findMatches(std::string player)const;
 
 		// OPERATORS.
-		operator size_t();
+		TennisMatch operator[](size_t index);
+		operator size_t()const;
+		TennisLog& operator=(const TennisLog& source);
+		TennisLog& operator=(TennisLog&& source);
 
 	};
-
-	// FUNCTIONS.
-	std::ostream& operator<<(std::ostream& os, TennisMatch& source);
 
 }
 
