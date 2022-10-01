@@ -1,6 +1,7 @@
 // Workshop 3 - Templates
 // 2022/06/22 - This code was made by Nathan.
 
+// INCLUDED HEADER FILES.
 #include <iostream>
 #include <iomanip>
 #include "Queue.h"
@@ -23,6 +24,7 @@ int main(int argc, char** argv)
 	std::cout << "--------------------------\n\n";
 
 	// Data to be used by the template classes
+	// VARIABLE DECLARATION.
 	long   dataSetA[]{ 22, 1, 455, 90, 455, 6, 43 };
 	double dataSetB[]{ 34.556, 3333.3303, 122.55, 3333.3333, 678.54, 3333.3389 };
 
