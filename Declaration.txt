@@ -10,7 +10,7 @@
 //                                                                  //
 // AUTHENTICITY DECLARATION :                                       //
 // I HAVE DONE ALL THE CODING BY MYSELF AND ONLY COPIED THE CODE    //
-// THAT MY PROFESSOR PROVIDED TO COMPLETE MY WORKSHOPS AND			    //
-// ASSIGNMENTS.													                            //
+// THAT MY PROFESSOR PROVIDED TO COMPLETE MY WORKSHOPS AND          //
+// ASSIGNMENTS.														                          //
 //                                                                  //
 //******************************************************************//
