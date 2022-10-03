@@ -1,2 +1,77 @@
+NAME       : DEV JIGISHKUMAR SHAH                                
+STUDENT ID : 131623217                                           
+MAIL ID    : djshah11@myseneca.ca                                
+COURSE     : OOP 345 NFF                                         
+SUBMISSION : WORKSHOP 3 (Reflect)
+
 1. Explain in the reflection why we do not split this module into *.h and *.cpp like you did in the previous workshops.
+
+We do not slit the modules of template in two seperate files, that is header file and .cpp file owing to the fact that the compiler creates seperate instance of the template according to the type passed in the program. Hence, because it is declared in the same module, it becomes easy for the compiler to create instance instead of finding it in different modules.
+
 2. In the reflection justify why it was necessary to add each one of the members you have decided to add.
+
+Following are the additional functions/members which I have added to the Dictionary module:
+
+i.   No argument construction: It was necessary as we declared a two argument constructor; hence, incase anyone wants to declare a variable without initiating the value, the presence of no argument construction becomes crucial.
+
+ii.  Comparision Operator: It was added to the class, since in the UniqueQueue, it was asked to check if the item is already present in the array or not. Therefore, incase someone passes Dictionary class in the template, UniqueQueue will be able to compare the data of the Dictionary class. 
+
+iii. Insertion Operator: To format the output of the object of the dictionary class, this function was added as a helper function which called the display function of the class.
+
+Topics learned: 
+
+=> Initialize template: The syntax to initialize a template, the parameters which could be used, the way to set default parameter and lastly the method to declare a variable in a class or function of the type which it would get through the template. 
+
+For example, for class it can be initialized as 
+
+template<typename type, unsigned int N>
+class Queue
+
+=> How to initiate a template: The syntax to call the function template or to initialize an object of a class template and passing the proper type.
+
+The template function or class can be called by writing,
+
+sdds::Queue<long, 20> colIntegers;
+
+Here, the Queue class is called by passing the type as long and naming its object as colIntegers.
+
+=> How to speacialie a template for a specific type: 
+
+Sometimes for some specific function we need a different logic of the code, hence, for such kind of sitution we specialize the template by writing template<> followed be the specific type and logic for the type.
+
+In case an example from code, 
+
+template<>
+	Queue<Dictionary, 100>::Queue()
+	{
+
+		m_dummy = { "Empty Term","Empty Substitute"};
+		m_capacity = 100;
+
+	}
+
+here, we declared a special logic for the Dictionary type of the Queue class's constructor.
+
+=> How to inherite a template class: The same way, we inherit a base class and create a derived class, we could also do it using class template.
+
+We created UniqueQueue class as a derived class from the base class Queue by using, 
+
+template<typename type>
+	class UniqueQueue : public Queue<type, 100>
+
+1. The reason for specializing the push() member function.
+
+=> It can seperate logic for the double type variable to get the expected result.
+
+2. The reason for defining the class variable outside the class definition.
+
+=> The variables are declared outside so that we can speacialise the value for different type as per out requirement. For instance in case of dictionary type we need it to initialise it as "Empty Team" and "Empty Substitution". Hence, we wrote,
+
+template<>
+	Queue<Dictionary, 100>::Queue()
+	{
+
+		m_dummy = { "Empty Term","Empty Substitute"};
+		m_capacity = 100;
+
+	}

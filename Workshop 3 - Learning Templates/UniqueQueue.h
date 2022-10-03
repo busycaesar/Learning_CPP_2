@@ -15,40 +15,55 @@
 //                                                                  //
 //******************************************************************//
 
-#ifndef SDDS_DICTIONARY_H
-#define SDDS_DICTIONARY_H
+#ifndef SDDS_UNIQUEQUEUE_H
+#define SDDS_UNIQUEQUEUE_H
 
-#include<string>
-#include<iomanip>
+#include"Queue.h"
+#include <cmath>
 
 namespace sdds
 {
 
-	// CLASS.
-	class Dictionary
+	// CLASS
+	template<typename type>
+	class UniqueQueue : public Queue<type, 100>
 	{
-
-		// DATA MEMBER.
-		std::string m_term{}, m_definition{};
 
 	public:
 
-		// CONSTRUCTOR.
-		Dictionary() {}
-		Dictionary(const std::string& term, const std::string& definition) : m_term{ term }, m_definition{ definition } {}
+		bool push(const type& newEle)
+		{
 
-		// OPERATOR.
-		bool operator==(const Dictionary& RO)const;
+			// VARIABLE DECLARATION.
+			bool success = false, isPresent = false;
 
-		// MEMBER FUNCTIONS.
-		const std::string& getTerm() const { return m_term; }
-		const std::string& getDefinition() const { return m_definition; }
-		std::ostream& display(std::ostream& out) const;
+			for (int i = 0; i < Queue<type, 100>::m_actual; i++)
+				if (newEle == Queue<type, 100>::m_queue[i])isPresent = true;
+
+			if (!isPresent)success = Queue<type, 100>::push(newEle);
+
+			return success;
+
+		}
 
 	};
 
-	std::ostream& operator <<(std::ostream& out, Dictionary source);
+	template<>
+	bool UniqueQueue<double>::push(const double& newEle)
+	{
+
+		// VARIABLE DECLARATION.
+		bool success = false, isPresent = false;
+
+		for (int i = 0; i < Queue<double, 100>::m_actual; i++)
+			if (std::fabs(newEle - Queue<double, 100>::m_queue[i]) <= 0.005)isPresent = true;
+
+		if (!isPresent)success = Queue<double, 100>::push(newEle);
+
+		return success;
+
+	}
 
 }
 
-#endif // !SDDS_DICTIONARY_H
+#endif // !SDDS_UNIQUEQUEUE_H

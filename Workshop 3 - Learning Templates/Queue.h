@@ -1,3 +1,20 @@
+//******************************************************************//
+//                                                                  //
+// NAME       : DEV JIGISHKUMAR SHAH                                // 
+// STUDENT ID : 131623217                                           //
+// MAIL ID    : djshah11@myseneca.ca                                //
+// COURSE     : OOP 345 NFF                                         //
+// SUBMISSION : WORKSHOP 3 (PART 2)                                 //
+//                                                                  //
+//******************************************************************// 
+//                                                                  //
+// AUTHENTICITY DECLARATION :                                       //
+// I HAVE DONE ALL THE CODING BY MYSELF AND ONLY COPIED THE CODE    //
+// THAT MY PROFESSOR PROVIDED TO COMPLETE MY WORKSHOPS AND          //
+// ASSIGNMENTS.                                                     //
+//                                                                  //
+//******************************************************************//
+
 #ifndef SDDS_QUEUE_H
 #define SDDS_QUEUE_H
 
@@ -11,14 +28,17 @@ namespace sdds
 	class Queue
 	{
 
+	protected:
+
 		// DATA MEMBER
-		type m_queue[N];
+		type m_queue[N], m_dummy;
 		int m_capacity, m_actual;
 
 		// MEMBER FUNCTION.
 		void setEmpty()
 		{
 
+			m_dummy = {};
 			m_capacity = N;
 			m_actual = 0;
 
@@ -26,11 +46,12 @@ namespace sdds
 
 	public:
 
-		// CONSTRUCTORS.
+		// CONSTRUCTORS AND DESTRUCTORS.
 		Queue() { setEmpty(); }
+		virtual ~Queue() {}
 
 		// MEMBER FUNCTIONS.
-		bool push(const type& newEle)
+		virtual bool push(const type& newEle)
 		{
 
 			// VARIABLE DECLARATION.
@@ -51,18 +72,13 @@ namespace sdds
 		type pop()
 		{
 
-			type temp = m_queue[0];
+			m_dummy = m_queue[0];
 
-			for (int i = 0; i < (m_actual - 1); i++)
-			{
+			m_actual--;
 
-				m_queue[i] = m_queue[i + 1];
+			for (int i = 0; i < m_actual; i++)m_queue[i] = m_queue[i + 1];
 
-			}
-
-			m_queue[m_actual - 1] = 0;
-
-			return temp;
+			return m_dummy;
 
 		}
 
@@ -73,12 +89,7 @@ namespace sdds
 
 			out << "----------------------" << std::endl << "| Dictionary Content |" << std::endl << "----------------------" << std::endl;
 
-			for (int i = 0; i < m_actual; i++)
-			{
-
-				out << m_queue[i] << std::endl;
-
-			}
+			for (int i = 0; i < m_actual; i++) out << m_queue[i] << std::endl;
 
 			out << "----------------------" << std::endl;
 
@@ -89,9 +100,9 @@ namespace sdds
 		type operator[](int index)
 		{
 
-			type temp{};
+			type temp = m_dummy;
 
-			if (index < m_actual) temp = m_queue[index];
+			if (index < m_actual)temp = m_queue[index];
 
 			return temp;
 
@@ -103,7 +114,8 @@ namespace sdds
 	Queue<Dictionary, 100>::Queue()
 	{
 
-		Dictionary dic("Empty Term", "Empty Substitute");
+		m_dummy = { "Empty Term","Empty Substitute"};
+		m_capacity = 100;
 
 	}
 
