@@ -1,0 +1,5 @@
+In copy assignment operator first check if the source is the same address as the current object.
+
+Right hand operand of a operator<< overload should be a const reference
+
+Query function should be with const
