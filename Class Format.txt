@@ -1,0 +1,19 @@
+============ Class Name ============
+||											 ||
+|| Data Members						 ||
+|| Constructors and Destructors	 ||
+|| Operators							 ||
+|| Methods								 ||
+|| Helper Functions					 ||
+||											 ||
+====================================
+
+C0de
+
+// CLASS NAME.
+// CLASS PURPOSE.
+// DATA MEMBER.
+// CONSTRUCTOR AND DESTRUCTOR.
+// OPERATOR.
+// METHODS.
+// HELPER FUNCTIONS.
