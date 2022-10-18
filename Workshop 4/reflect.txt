@@ -1,0 +1,36 @@
+NAME       : DEV JIGISHKUMAR SHAH
+STUDENT ID : 131623217
+MAIL ID    : djshah11@myseneca.ca
+COURSE     : OOP 345 NFF
+SUBMISSION : WORKSHOP 5 (Reflect)
+
+Topics learned
+--------------
+Following are the topics which I have learned while completing this workshop.
+
+=> The method to design as well as utilize a function object, and that of the lambda expression.
+
+=> Apart from that, I learned how to use call back function in order to either alert the user regarding some update or to perform some defined steps when some particular action is taken place. For instance, a new object is added to the array of the objects.
+
+=> The way to through exceptions in order to let the user know if there is any problem with the logic of the code or something is mission. For example, in our case, there was a point where some file was mission due to which the program could not open it and hence it through an error. This way the user comes to know that there is someting wrong.
+
+Problems Faced
+--------------
+
+Extracting the data from the string in the constructor was a very time consuming task; after logically making the algorithm, it felt easy as later I made a function which I call everytime such kind of takes came.
+
+# The difference between the implementations/utilizations of a functor and a lambda expression. When is appropriate to use each one?
+
+=> 
+
+# The constructor for SpellChecker generates an exception in certain conditions. How would you change your code to achieve the same result, but without exceptions (both on the constructor and on the client side)? Compare the two solutions.
+
+=> The SpellChecker generates an exception in case the file name send to it is not available in the folder or it failes to open. In order to fix it, we can add a condition to only enter the function if the file name is valid or else included in the folder. In case, it is not present, the function will not do anything. Instead, we could just add a message to inform the user the consition of the file, that is, either fail to open or mission file.
+
+# The classes Movie and Book contain almost identical logic in loading data from the file. How would you redesign the classes in order not to duplicate that logic?
+
+=> In order to not duplicate the logic, one way is to list out all the logic which is common in both the modules and create functions based on that logic which we could later call from both the modules. On the other hand, a template can be made which could have specialization only for the insertion operator and other methods which are different in both the modules.
+
+# The classes Movie and Book are instantiated from the main() function using a custom constructor, but they also contain a default constructor. Is the default constructor necessary? Could you remove it? Justify your answer.
+
+=> 
