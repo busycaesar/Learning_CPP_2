@@ -10,10 +10,23 @@
 
 C0de
 
-// CLASS NAME.
-// CLASS PURPOSE.
-// DATA MEMBER.
-// CONSTRUCTOR AND DESTRUCTOR.
-// OPERATOR.
+// CLASS NAME AND PURPOSE.
+	// NAME:
+	// PURPOSE:
+
+// DATA MEMBERS.
+	// INSTANCE VARIABLES.
+	// CLASS VARAIBLES.
+
 // METHODS.
-// HELPER FUNCTIONS.
+	// CONSTRUCTORS AND DESTRUCTOR.
+	// OPERATORS.
+	// CLASS FUNCTIONS.
+	// QUERIES.
+	// METHODS.
+	// HELPER FUNCTIONS.
+
+Nomenclature
+
+=> Data Members: data_(name of the variable)
+=> Methods: mthd_(name of the method)

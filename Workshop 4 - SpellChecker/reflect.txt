@@ -21,7 +21,7 @@ Extracting the data from the string in the constructor was a very time consuming
 
 # The difference between the implementations/utilizations of a functor and a lambda expression. When is appropriate to use each one?
 
-=> 
+=> A functor is call multiple times from the whole program, whereas the expression is created which can be called once. Moreover, a lambda expression could be assigned to a variable due to which it becomes easy to declare and call it whenever require. Lastly, it helps to create seperate logic for every task.
 
 # The constructor for SpellChecker generates an exception in certain conditions. How would you change your code to achieve the same result, but without exceptions (both on the constructor and on the client side)? Compare the two solutions.
 
@@ -33,4 +33,10 @@ Extracting the data from the string in the constructor was a very time consuming
 
 # The classes Movie and Book are instantiated from the main() function using a custom constructor, but they also contain a default constructor. Is the default constructor necessary? Could you remove it? Justify your answer.
 
-=> 
+=> Although a custom argumment constructor does the task, it is important to declare a default constructor. In my perception, there might be two reasons for declaring a default constructor:
+
+	> In case a default constructor is not declared, the compiler will not consider any temperory object declated without a data. Hence, in such a condition where the object has dynamic memory, the user wont be able to extend it as temperory object is not able to be created. Therefore, a default constructor becomes a good practice.
+	
+	For example, in Collection.h, for operator+=, a temp object to store the variable of the current object could not be created.
+
+	> Secondly, In case of inheritance, it might become difficult for the compiler to initiate the base object as it needs some arguments. If the arguments are not provided, it will throw an error.
