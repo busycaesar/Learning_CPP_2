@@ -1,0 +1,10 @@
+﻿  Autoshop.cpp
+  Car.cpp
+  Luxuryvan.cpp
+  Racecar.cpp
+  Utilities.cpp
+  Van.cpp
+  w6_p2.cpp
+D:\CPA Sem 3\OOP 345\Workshops\Workshop 6  - Autoshop\w6_p2.cpp(56,33): warning C4101: 'error': unreferenced local variable
+  Generating Code...
+  Workshop 6  - Autoshop.vcxproj -> D:\CPA Sem 3\OOP 345\Workshops\Workshop 6  - Autoshop\x64\Debug\Workshop 6  - Autoshop.exe
