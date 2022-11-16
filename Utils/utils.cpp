@@ -54,7 +54,12 @@ void trim_word(std::string& f_word)
 			f_data.erase(0, t_position + 1);
 
 		}
-		else {f_data.erase(0, 1);}
+		else
+		{
+			f_data.erase(0, 1);
+		}
+
+		trim_word(f_data);
 
 		return t_temp;
 
