@@ -1,6 +1,19 @@
-// Workshop 9 - Multi-threading
-// TreasureMap.cpp
-// Michael Huang
+//******************************************************************//
+//                                                                  //
+// NAME       : DEV JIGISHKUMAR SHAH                                // 
+// STUDENT ID : 131623217                                           //
+// MAIL ID    : djshah11@myseneca.ca                                //
+// COURSE     : OOP 345 NFF                                         //
+// SUBMISSION : WORKSHOP 9 (PART 2)                                  //
+//                                                                  //
+//******************************************************************// 
+//                                                                  //
+// AUTHENTICITY DECLARATION :                                       //
+// I HAVE DONE ALL THE CODING BY MYSELF AND ONLY COPIED THE CODE    //
+// THAT MY PROFESSOR PROVIDED TO COMPLETE MY WORKSHOPS AND          //
+// ASSIGNMENTS.                                                     //
+//                                                                  //
+//******************************************************************//
 
 // REQUIRED HEADER FILES.
 #include <iostream>
@@ -8,8 +21,7 @@
 #include <string>
 #include "TreasureMap.h"
 
-namespace sdds
-{
+namespace sdds {
 
 	size_t digForTreasure(const std::string& str, char mark)
 	{
@@ -28,7 +40,6 @@ namespace sdds
 
 		// VARIABLE DECLARATION.
 		std::fstream fin(filename);
-		size_t idx = 0;
 
 		if (fin)
 		{
@@ -36,11 +47,12 @@ namespace sdds
 			fin >> rows;
 			fin.ignore();
 			map = new std::string[rows];
+			size_t idx = 0;
 
 			while (fin)
 			{
 
-				std::getline(fin, map[idx]);
+				getline(fin, map[idx]);
 				idx++;
 
 			}
@@ -71,18 +83,18 @@ namespace sdds
 		if (map)
 		{
 
-			// TODO: Open a binary file stream to the filename and
-			//         then write the row number to the binary file 
-			//         then each of the rows of the map.
-			//       If the file cannot be open, raise an exception to
-			//         inform the client.
-
-			// END TODO
-
 			// VARIABLE DECLARATION.
-			std::ofstream data_file(filename, std::ofstream::binary);
+			std::fstream data_file(filename, std::ios::binary | std::ios::out);
 
-			
+			if (data_file)
+			{
+
+				data_file.write((char*)&rows, sizeof(size_t));
+				data_file.write((char*)&colSize, sizeof(size_t));
+
+				for (size_t i = 0; i < rows; ++i) data_file.write(map[i].c_str(), colSize);
+
+			}
 
 		}
 		else throw std::string("Treasure map is empty!");
@@ -92,17 +104,30 @@ namespace sdds
 	void TreasureMap::recall(const char* filename)
 	{
 
-		// Binary read
-		// TODO: Open a binary file stream to the filename
-		//         and read from it to populate the current object.
-		//       The first 4 bytes of the file will be the number of rows
-		//         for the map followed another 4 bytes for the colSize
-		//         of each row in the map.
-		//       Afterwards is each row of the map itself.
-		//       If the file cannot be open, raise an exception to inform
-		//         the client.
+		// VARIABLE DECLARATION.
+		std::fstream fin(filename, std::ios::binary | std::ios::in);
 
-		// END TODO
+		if (fin)
+		{
+
+			fin.read((char*)&rows, sizeof(size_t));
+			fin.read((char*)&colSize, sizeof(size_t));
+
+			map = new std::string[rows];
+
+			for (size_t i = 0; i < rows; ++i)
+			{
+
+				// VARIABLE DECLARATION.
+				char* row = new char[colSize + 1];
+				fin.read(row, colSize);
+				row[colSize] = '\0';
+				map[i] = row;
+				delete[] row;
+
+			}
+
+		}
 
 	}
 
@@ -121,9 +146,27 @@ namespace sdds
 
 		// VARIABLE DECLARATION.
 		size_t count = 0;
+		packed_task* task = new packed_task[rows];
+		future_variable* task_answers = new future_variable[rows];
+		std::thread* threads = new std::thread[this->rows];
 
-		// TODO: For part 2, comment this "for" loop and write the multihreaded version.
-		for (size_t i = 0; i < rows; ++i) { count += digForTreasure(map[i], mark); }
+		for (size_t i = 0; i < rows; i++)
+		{
+
+			task[i] = std::move(packed_task(std::bind(digForTreasure, map[i], mark)));
+			task_answers[i] = task[i].get_future();
+
+			threads[i] = std::thread(std::move(task[i]));
+
+			count += task_answers[i].get();
+
+		}
+
+		for (size_t i = 0; i < rows; i++) threads[i].join();
+
+		delete[] threads;
+		delete[] task;
+		delete[]task_answers;
 
 		return count;
 

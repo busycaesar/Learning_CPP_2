@@ -9,6 +9,13 @@
 #include<cstddef>
 #include<iostream>
 #include<fstream>
+#include <thread>
+#include <future>
+#include <functional>
+
+// MACROS.
+#define packed_task std::packaged_task<size_t()>
+#define future_variable std::future<size_t>
 
 namespace sdds
 {
