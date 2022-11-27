@@ -30,7 +30,4 @@
   <ItemGroup>
     <Text Include="map.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="map.dat" />
-  </ItemGroup>
 </Project>
