@@ -1,6 +1,6 @@
 # OOP 345 Object Oriented Software Development Using C++
 
-## We use to get workshops every week in this course. Hence, this contains all the workshops along with its learning outcomes.
+## All the workshops of OOP 345.
 
 # Warning
 
